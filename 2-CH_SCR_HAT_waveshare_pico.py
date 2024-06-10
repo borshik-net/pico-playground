@@ -25,8 +25,6 @@ class SCRI2C:
         self.I2C_SendWord(0x02, Channel)
             
     def VoltageRegulation(self, Channel,  Angle):
-        if(Angle == 180):
-            Angle=179
         if(Channel == 1):
             self.I2C_SendWord(0x03, Angle)
         elif(Channel == 2):
