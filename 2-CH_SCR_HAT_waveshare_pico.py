@@ -14,7 +14,7 @@ class SCRI2C:
     def I2C_SendWord(self, reg, value):
         data = pack(">BH", reg, value)
         if(self.debug):
-            print("i2c.send(" + hex(self.address) + ", " + hex(data[0]) + ", " + hex(data[1]) + ", " + hex(data[2]) + ")")
+            print("i2c.writeto(" + hex(self.address) + ", " + hex(data[0]) + ", " + hex(data[1]) + ", " + hex(data[2]) + ")")
         self.i2c.writeto(self.address, data)
         time.sleep(0.001)
     
@@ -73,13 +73,6 @@ def cleanup(scr):
     
     
 scr = SCRI2C(debug=True)
-
-scr.SetMode(0x01)
-scr.GridFrequency(50)
-scr.VoltageRegulation(1,0)
-scr.VoltageRegulation(2,0)
-scr.ChannelEnable(0x03)
-
 cycle(scr, cycles=360, step=1, delay=0.01)
 cleanup(scr)
     
